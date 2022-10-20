@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Entidades": {
+      "commandName": "Project"
+    },
+    "Perfil 1": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\ruben\\GitHub\\Asignaturas\\Asignaturas\\SistemasGestion\\07_EnviarDatos\\07_EnviarDatos_MVC_UI\\07_EnviarDatos_MVC_UI.csproj"
+    }
+  }
+}

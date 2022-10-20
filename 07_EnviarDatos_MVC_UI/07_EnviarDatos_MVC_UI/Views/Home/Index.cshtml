@@ -1,0 +1,45 @@
+﻿@using _07_Entidades;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @model _07_Entidades.clsPersona
+</head>
+<body>
+    @{
+        List<clsPersona> listaPersona = (List<clsPersona>)ViewData["ListadoPersonas"];
+    }
+    <!--
+        <p>Hola @ViewData["estadoDia"] </p>
+    -->
+    <p>@ViewBag.fecha </p>
+    <br />
+    <p>Los datos que vienen del modelo son:</p>
+    <p>id: @Model.idPersona</p>
+    <p>Nombre: @Model.nombre</p>
+    <p>Apellido: @Model.apellidos</p>
+    <p>Direccion: @Model.direccion</p>
+    <p>Telefono: @Model.telefono</p>
+    
+    <table border="1" cellpadding="4">
+        <tr>
+            <td>NOMBRE</td>
+            <td>APELLIDOS</td>
+        </tr>
+        @foreach (var e in @listaPersona)
+        {
+
+            <tr>
+                <td>  @e.nombre</td>
+                <td>  @e.apellidos</td>
+            </tr>
+
+
+        }
+    </table>
+
+</body>
+</html>
