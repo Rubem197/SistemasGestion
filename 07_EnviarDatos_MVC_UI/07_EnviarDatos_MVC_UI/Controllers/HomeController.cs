@@ -44,7 +44,7 @@ namespace _07_EnviarDatos_MVC_UI.Controllers
             persona1.telefono = 634735417;
 
 
-            ViewData["ListadoPersonas"] = clsListadoPersonaDAL.obtenerListadoCompletoPersonas();
+            ViewData["ListadoPersonas"] = clsListadoPersonaDAL.listadoPersonas();
 
             return View(persona1);
         }

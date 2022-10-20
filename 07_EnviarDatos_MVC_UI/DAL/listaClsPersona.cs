@@ -11,7 +11,7 @@ namespace _07_DAL
         /// Postcondicion: Devolvera 6 personas
         /// </summary>
         /// <returns></returns>
-        public static List<clsPersona> obtenerListadoCompletoPersonas()
+        public static List<clsPersona> listadoPersonas()
         {
 
             List<clsPersona> lista = new List<clsPersona>();
