@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_08_Layout_StackLayout.MainPage">
+
+    <ScrollView>
+
+        <Border StrokeThickness="10" Stroke="#7f11af" Margin="10" StrokeShape ="RoundRectangle 40 40 0 0">
+            <StackLayout VerticalOptions="Center">
+                <Button Text="Boton 1" HorizontalOptions="Center" BorderWidth="4" BorderColor="Black" Padding= "12" Margin="4" />
+
+                <Button Text="Boton 2" HorizontalOptions="Center" Margin="4" />
+
+                <Button Text="Boton 3" HorizontalOptions="Center" Margin="4" />
+
+                <HorizontalStackLayout HorizontalOptions="Center" Margin="4">
+                <Label Text="Nombre: " Margin="0,0,10,0"/>
+                <Entry BackgroundColor="AliceBlue" MinimumWidthRequest="130" />
+                </HorizontalStackLayout>
+            </StackLayout>
+        </Border>
+    </ScrollView>
+</ContentPage>
+
+
+
+
+    
