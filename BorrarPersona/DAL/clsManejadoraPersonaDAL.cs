@@ -11,10 +11,11 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns>clsPersona</returns>
-        public clsPersona ObternerPersonaPorId(int id) {
+        public static clsPersona ObternerPersonaPorId(int id) {
 
+            List<clsPersona> lista = ListaClsPersona.listadoPersona();
 
-            return new clsPersona();
+            return lista.Find(clsPersona => clsPersona.idPersona == id);
         }
 
         /// <summary>

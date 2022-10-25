@@ -1,4 +1,5 @@
-﻿using Entidades;
+﻿using DAL;
+using Entidades;
 
 namespace EditarPersona_UI_MVC.Models.ViewModels
 {
@@ -6,5 +7,11 @@ namespace EditarPersona_UI_MVC.Models.ViewModels
     {
         public List<clsDepartamento> listadoCompletoDepartamento { get; }
         public clsPersona persona { get; set; }
+
+        clsEditarPersonaVM()
+        {
+            this.persona = clsManejadoraPersonaDAL.ObternerPersonaPorId(2);
+            this.listadoCompletoDepartamento = clsListadoDepartamentosDAL.obtenerListadoCompletoDepartamento();
+        }
     }
 }

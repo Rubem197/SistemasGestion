@@ -10,9 +10,14 @@ namespace DAL
         /// Postcondiciones: ninguna 
         /// </summary>
         /// <returns>List<clsDepartamento></returns>
-        public List<clsDepartamento> obtenerListadoCompletoDepartamento()
+        public static List<clsDepartamento> obtenerListadoCompletoDepartamento()
         {
             List<clsDepartamento> listaDepartamento = new List<clsDepartamento>();
+
+            listaDepartamento.Add(new clsDepartamento(1,"awa"));
+
+            listaDepartamento.Add(new clsDepartamento(2, "awo"));
+
             return listaDepartamento;
         }
     }
