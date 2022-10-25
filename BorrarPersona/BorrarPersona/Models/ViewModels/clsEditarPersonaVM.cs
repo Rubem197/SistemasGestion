@@ -8,7 +8,7 @@ namespace EditarPersona_UI_MVC.Models.ViewModels
         public List<clsDepartamento> listadoCompletoDepartamento { get; }
         public clsPersona persona { get; set; }
 
-        clsEditarPersonaVM()
+        public clsEditarPersonaVM()
         {
             this.persona = clsManejadoraPersonaDAL.ObternerPersonaPorId(2);
             this.listadoCompletoDepartamento = clsListadoDepartamentosDAL.obtenerListadoCompletoDepartamento();
