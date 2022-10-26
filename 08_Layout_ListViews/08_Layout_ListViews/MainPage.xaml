@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_08_Layout_ListViews.MainPage">
+
+    <ScrollView>
+        <ListView x:Name="ListViewClsPersona" ItemsSource="{Binding ListaClsPersona}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding nombre} "></Label>
+                            <Label Margin="5,0,0,0" Text="{Binding apellidos}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        
+        <Button ImageSource="eliminar.png" MaximumWidthRequest="70" MaximumHeightRequest="70"/>
+    </ScrollView>
+
+</ContentPage>
