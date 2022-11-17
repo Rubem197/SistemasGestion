@@ -1,0 +1,36 @@
+Models
+
+	clsPersona
+
+			int id
+			string nombre
+			string apellidos
+			int telefono
+			string direccion
+			int idDepartamento
+
+	clsDepartamento
+			
+			idDepartamento
+			nombreDepartamento
+
+DAL
+	clsListadoDepartamento
+		Lista<clsDepartamento> listaDepartamento()
+
+	clsManejadoraDepartamento
+		obtenerDepartamentoPorId (int id)
+
+
+
+UI		 
+
+ ViewModel
+	
+	clsEditarPersonaDepartamentoVM
+		List<clsDepartamento> listaDepartamento
+		clsPersona persona
+	clsPersonaModificadaVM
+		clsPersona persona
+		clsDepartamento NombredepartamentoPersona
+		

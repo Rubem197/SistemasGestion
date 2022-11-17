@@ -7,10 +7,10 @@ namespace _08_Ejercicio3_MVC.Controllers
 {
     public class HomeController : Controller
     {
-        clsPersona persona1 = new clsPersona();
+
         public ActionResult Editar()
         {
-            
+            clsPersona persona1 = new clsPersona();
             persona1.nombre = "Ricardo";
             persona1.apellidos = "Milos";
             persona1.direccion = "Sarinanda";
@@ -26,21 +26,27 @@ namespace _08_Ejercicio3_MVC.Controllers
         /// <param name="direccion"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Editar(string nombre, string apellidos, string direccion) {
+        public ActionResult Editar(clsPersona persona1)
+        {
 
-            persona1.nombre = nombre;
-            persona1.apellidos = apellidos;
-            persona1.direccion = direccion;
+            if (!ModelState.IsValid)
+            {
+                return View(persona1);
+            }
+            else
+            {
 
-            return View("PersonaModificada", persona1);
+                return View("PersonaModificada", persona1);
+            }
         }
         /// <summary>
         /// Recibe una persona y lo returna a la vista
         /// </summary>
         /// <param name="persona1"></param>
         /// <returns></returns>
-        public ActionResult PersonaModificada(clsPersona persona1) { 
-        
+        public ActionResult PersonaModificada(clsPersona persona1)
+        {
+
             return View();
         }
     }
