@@ -1,32 +1,22 @@
 ﻿using CRUD_Personas_ASP.Models;
+using CRUD_Personas_BL;
+using CRUD_Personas_DAL;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
 using System.Diagnostics;
 
 namespace CRUD_Personas_ASP.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public ActionResult ListadoPersona()
         {
-            _logger = logger;
+            return View((IEnumerable)(obtenerListadoPersonaBL.ListadoCompletoPersonas()));
         }
 
-        public IActionResult Index()
+        public ActionResult ListadoDepartamento()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View((IEnumerable)(obtenerListadoDepartamentosBL.ListadoCompletoDepartamentos()));
         }
     }
 }
