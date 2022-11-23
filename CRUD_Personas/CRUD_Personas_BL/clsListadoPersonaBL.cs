@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CRUD_Personas_BL
 {
-    public class obtenerListadoPersonaBL
+    public class clsListadoPersonaBL
     {
         public static List<clsPersonas> ListadoCompletoPersonas()
         {
-            return ObtenerListadoPersonas.ListadoCompletoPersonas();   
+            return clsListadoPersonaDAL.ListadoCompletoPersonas();   
         }
     }
 }

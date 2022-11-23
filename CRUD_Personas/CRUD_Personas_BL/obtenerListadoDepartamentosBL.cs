@@ -7,7 +7,7 @@ namespace CRUD_Personas_BL
     {
         public static List<clsDepartamentos> ListadoCompletoDepartamentos()
         {
-            return obtenerListadoDepartamentos.ListadoCompletoDepartamentos();
+            return clsListadoDepartamentoDAL.ListadoCompletoDepartamentos();
         }
     }
 }

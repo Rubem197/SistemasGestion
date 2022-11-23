@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace CRUD_Personas_DAL
 {
-    public class ObtenerListadoPersonas
+    public class clsListadoPersonaDAL
     {
         public static List<clsPersonas> ListadoCompletoPersonas()
         {

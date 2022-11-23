@@ -11,7 +11,7 @@ namespace CRUD_Personas_ASP.Controllers
     {
         public ActionResult ListadoPersona()
         {
-            return View((IEnumerable)(obtenerListadoPersonaBL.ListadoCompletoPersonas()));
+            return View((IEnumerable)(clsListadoPersonaBL.ListadoCompletoPersonas()));
         }
 
         public ActionResult ListadoDepartamento()

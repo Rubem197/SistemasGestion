@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace CRUD_Personas_DAL
 {
-    public class obtenerListadoDepartamentos
+    public class clsListadoDepartamentoDAL
     {
         public static List<clsDepartamentos> ListadoCompletoDepartamentos()
         {
