@@ -6,10 +6,10 @@
     <VerticalStackLayout HorizontalOptions="Center">
 
         <Entry Margin="10,0,0,30" Text="{Binding Nombre}"/>
-        <Entry Margin="0,0,0,40" Text="{Binding Apellidos}"/>
-        <Entry Margin="0,0,0,40" Text="{Binding Telefono}"/>
-        <Entry Margin="0,0,0,40" Text="{Binding Direccion}"/>
-        <Entry Margin="0,0,0,40" Text="{Binding fechaNacimiento}"/>
+        <Entry Margin="0,0,0,30" Text="{Binding Apellidos}"/>
+        <Entry Margin="0,0,0,30" Text="{Binding Telefono}"/>
+        <Entry Margin="0,0,0,30" Text="{Binding Direccion}"/>
+        <Entry Margin="0,0,0,30" Text="{Binding fechaNacimiento}"/>
         <Picker/>
     </VerticalStackLayout>
 </ContentPage>
