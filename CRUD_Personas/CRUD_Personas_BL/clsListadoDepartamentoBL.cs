@@ -3,7 +3,7 @@ using CRUD_Personas_Entidades;
 
 namespace CRUD_Personas_BL
 {
-    public class obtenerListadoDepartamentosBL
+    public class clsListadoDepartamentoBL
     {
         public static List<clsDepartamentos> ListadoCompletoDepartamentos()
         {

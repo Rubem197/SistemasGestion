@@ -24,6 +24,16 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button WidthRequest="150" HeightRequest="60" Text="BorrarPersona" Command="{Binding BorrarPersona}"/>
+
+        <HorizontalStackLayout>
+
+            <Button WidthRequest="150" HeightRequest="60" Text="EditarPersona" Command="{Binding EditarPersona}"/>
+
+            <Button WidthRequest="150" HeightRequest="60" Text="InsertarPersona" Command="{Binding }"/>
+
+            <Button WidthRequest="150" HeightRequest="60" Text="BorrarPersona" Command="{Binding BorrarPersona}"/>
+
+        </HorizontalStackLayout>
+
     </VerticalStackLayout>
 </ContentPage>
