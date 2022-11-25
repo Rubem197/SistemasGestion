@@ -3,11 +3,12 @@ using CRUD_Personas_DAL;
 using CRUD_Personas_Entidades;
 using CRUD_Personas_MAUI.Views;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using UD11_Ejercicio1_Maui.ViewModels.Utilidades;
 
 namespace CRUD_Personas_MAUI.ViewModels
 {
-    public class clsListadoPersonasVM
+    public class clsListadoPersonasVM : INotifyPropertyChanged
     {
         #region Atributos
         private ObservableCollection<clsPersonas> listadoCompletoPersonas;
@@ -18,6 +19,8 @@ namespace CRUD_Personas_MAUI.ViewModels
         private DelegateCommand borrarCommand;
         private DelegateCommand editarCommand;
         private DelegateCommand insertarCommand;
+
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Propiedades
@@ -31,7 +34,12 @@ namespace CRUD_Personas_MAUI.ViewModels
         public clsPersonas PersonaSeleccionada
         {
             get { return personaSeleccionada; }
-            set { personaSeleccionada = value; borrarCommand.RaiseCanExecuteChanged(); editarCommand.RaiseCanExecuteChanged(); }
+            set
+            {
+                personaSeleccionada = value;
+                borrarCommand.RaiseCanExecuteChanged();
+                editarCommand.RaiseCanExecuteChanged();
+            }
         }
         public DelegateCommand BorrarPersona
         {
@@ -59,7 +67,7 @@ namespace CRUD_Personas_MAUI.ViewModels
         {
             listadoCompletoPersonas = new ObservableCollection<clsPersonas>(clsListadoPersonaBL.ListadoCompletoPersonas());
             BorrarPersona = new DelegateCommand(borrarPersonaCommand_Executed, borrarPersonaCommand_CanExecute);
-            editarCommand = new DelegateCommand(editarPersonaCommand_ExecutedAsync, editarPersonaCommand_CanExecute);
+            editarCommand = new DelegateCommand(editarPersonaCommand_Executed, editarPersonaCommand_CanExecute);
         }
 
         #endregion
@@ -87,7 +95,7 @@ namespace CRUD_Personas_MAUI.ViewModels
                 if (PersonaSeleccionada.Equals(listadoCompletoPersonas[i]))
                 {
                     listadoCompletoPersonas.RemoveAt(i);
-                    clsManejadoraPersonaDAL.borrarPersonas(personaSeleccionada.Id);
+                    clsManejadoraPersonaBL.borrarPersonas(personaSeleccionada.Id);
                 }
             }
         }
@@ -104,13 +112,20 @@ namespace CRUD_Personas_MAUI.ViewModels
             return lanzarExecuted;
         }
 
-        private async void editarPersonaCommand_ExecutedAsync()
+        private async void editarPersonaCommand_Executed()
         {
             var navigationParameter = new Dictionary<string, object>
             {
-                { "clsPersonas", PersonaSeleccionada }
+                { "personaSeleccionada", PersonaSeleccionada }
             };
             await Shell.Current.GoToAsync($"EditarPersona", navigationParameter);
+            listadoCompletoPersonas =new ObservableCollection <clsPersonas>( clsListadoPersonaBL.ListadoCompletoPersonas());
+            NotifyPropertyChanged("listadoCompletoPersonas");
+        }
+
+        protected virtual void NotifyPropertyChanged(string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

@@ -2,14 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_Personas_MAUI.Views.EditarPersona"
+             xmlns:model="clr-namespace:CRUD_Personas_MAUI.ViewModels"
              Title="EditarPersona">
+    <ContentPage.BindingContext>
+        <model:EditarPersonaVM/>
+    </ContentPage.BindingContext>
     <VerticalStackLayout HorizontalOptions="Center">
 
-        <Entry Margin="10,0,0,30" Text="{Binding Nombre}"/>
-        <Entry Margin="0,0,0,30" Text="{Binding Apellidos}"/>
-        <Entry Margin="0,0,0,30" Text="{Binding Telefono}"/>
-        <Entry Margin="0,0,0,30" Text="{Binding Direccion}"/>
-        <Entry Margin="0,0,0,30" Text="{Binding fechaNacimiento}"/>
-        <Picker/>
+        <Entry Margin="0,0,0,30" Text="{Binding PersonaSeleccionada.Nombre}"/>
+        <Entry Margin="0,0,0,30" Text="{Binding PersonaSeleccionada.Apellidos}"/>
+        <Entry Margin="0,0,0,30" Text="{Binding PersonaSeleccionada.Telefono}"/>
+        <Entry Margin="0,0,0,30" Text="{Binding PersonaSeleccionada.Direccion}"/>
+        <Entry Margin="0,0,0,30" Text="{Binding PersonaSeleccionada.FechaNacimiento}"/>
+        <Picker ItemsSource="{Binding ListadoDepartamentos}"
+                ItemDisplayBinding="{Binding Nombre}"
+                SelectedIndex="{Binding PersonaSeleccionada.IdDepartamento}"
+                />
+
+        <Button WidthRequest="100" HeightRequest="40" Margin="0,20,0,0" Text="Guardar" Command="{Binding GuardarCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
