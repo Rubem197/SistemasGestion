@@ -34,7 +34,7 @@ namespace CRUD_Personas_DAL
                         persona.Direccion = (string)lector["Direccion"];
                         persona.Foto = (string)lector["Foto"];
                         persona.FechaNacimiento = (DateTime)lector["FechaNacimiento"];
-                        persona.IdDepartamento = (int)lector["IDDepartamento"];
+                        persona.IdDepartamento = (int)lector["IDDepartamento"]-1;
                         lista.Add(persona);
                     }
                 }

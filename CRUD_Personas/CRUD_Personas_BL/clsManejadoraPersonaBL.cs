@@ -18,5 +18,10 @@ namespace CRUD_Personas_BL
         {
             return clsManejadoraPersonaDAL.editarPersonas(persona);
         }
+
+        public static int insertarPersonas(clsPersonas persona)
+        {
+            return clsManejadoraPersonaDAL.insertarPersonas(persona);
+        }
     }
 }

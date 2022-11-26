@@ -25,7 +25,7 @@ namespace CRUD_Personas_DAL
                     while (lector.Read())
                     {
                         departamento = new clsDepartamentos();
-                        departamento.Id = (int)lector["ID"];
+                        departamento.Id = ((int)lector["ID"]);
                         departamento.Nombre = (string)lector["Nombre"];
                         lista.Add(departamento);
                     }

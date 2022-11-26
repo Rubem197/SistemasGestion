@@ -1,22 +1,26 @@
 ﻿using CRUD_Personas_BL;
 using CRUD_Personas_DAL;
 using CRUD_Personas_Entidades;
-using CRUD_Personas_MAUI.Views;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Web;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UD11_Ejercicio1_Maui.ViewModels.Utilidades;
 
 namespace CRUD_Personas_MAUI.ViewModels
 {
-    [QueryProperty(nameof(clsPersonas), "personaSeleccionada")]
-    public class EditarPersonaVM : IQueryAttributable, INotifyPropertyChanged
+    public class InsertarPersonaVM : INotifyPropertyChanged
     {
+          
         #region Atributos
 
         private clsPersonas personaSeleccionada;
         private List<clsDepartamentos> listadoDepartamentos;
         private DelegateCommand guardarCommand;
         public event PropertyChangedEventHandler PropertyChanged;
+
 
         #endregion
 
@@ -28,7 +32,7 @@ namespace CRUD_Personas_MAUI.ViewModels
             {
                 personaSeleccionada = value;
                 guardarCommand.RaiseCanExecuteChanged();
-                
+
             }
         }
         public List<clsDepartamentos> ListadoDepartamentos
@@ -46,9 +50,9 @@ namespace CRUD_Personas_MAUI.ViewModels
         #endregion
 
         #region Constructor
-        public EditarPersonaVM()
+        public InsertarPersonaVM()
         {
-
+            personaSeleccionada = new clsPersonas();
             listadoDepartamentos = clsListadoDepartamentoDAL.ListadoCompletoDepartamentos();
             guardarCommand = new DelegateCommand(guardarPersonaCommand_Executed, guardarPersonaCommand_CanExecute);
         }
@@ -56,11 +60,6 @@ namespace CRUD_Personas_MAUI.ViewModels
 
 
         #region Comandos
-        public void ApplyQueryAttributes(IDictionary<string, object> query)
-        {
-            personaSeleccionada = query["personaSeleccionada"] as clsPersonas;
-            NotifyPropertyChanged("PersonaSeleccionada");
-        }
 
         private bool guardarPersonaCommand_CanExecute()
         {
@@ -70,11 +69,10 @@ namespace CRUD_Personas_MAUI.ViewModels
 
         private void guardarPersonaCommand_Executed()
         {
-            clsManejadoraPersonaBL.editarPersonas(PersonaSeleccionada);
-            
+            clsManejadoraPersonaBL.insertarPersonas(PersonaSeleccionada);
+
         }
 
-      
         protected virtual void NotifyPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -8,7 +8,7 @@ using UD11_Ejercicio1_Maui.ViewModels.Utilidades;
 
 namespace CRUD_Personas_MAUI.ViewModels
 {
-    public class clsListadoPersonasVM : INotifyPropertyChanged
+    public class clsListadoPersonasVM 
     {
         #region Atributos
         private ObservableCollection<clsPersonas> listadoCompletoPersonas;
@@ -20,7 +20,6 @@ namespace CRUD_Personas_MAUI.ViewModels
         private DelegateCommand editarCommand;
         private DelegateCommand insertarCommand;
 
-        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Propiedades
@@ -68,6 +67,7 @@ namespace CRUD_Personas_MAUI.ViewModels
             listadoCompletoPersonas = new ObservableCollection<clsPersonas>(clsListadoPersonaBL.ListadoCompletoPersonas());
             BorrarPersona = new DelegateCommand(borrarPersonaCommand_Executed, borrarPersonaCommand_CanExecute);
             editarCommand = new DelegateCommand(editarPersonaCommand_Executed, editarPersonaCommand_CanExecute);
+            insertarCommand = new DelegateCommand(insertarPersonaCommand_Executed, insertarPersonaCommand_CanExecute);
         }
 
         #endregion
@@ -114,18 +114,21 @@ namespace CRUD_Personas_MAUI.ViewModels
 
         private async void editarPersonaCommand_Executed()
         {
+            
             var navigationParameter = new Dictionary<string, object>
             {
                 { "personaSeleccionada", PersonaSeleccionada }
             };
             await Shell.Current.GoToAsync($"EditarPersona", navigationParameter);
-            listadoCompletoPersonas =new ObservableCollection <clsPersonas>( clsListadoPersonaBL.ListadoCompletoPersonas());
-            NotifyPropertyChanged("listadoCompletoPersonas");
+        }
+        private bool insertarPersonaCommand_CanExecute()
+        {
+            return true;
         }
 
-        protected virtual void NotifyPropertyChanged(string propertyName = null)
+        private async void insertarPersonaCommand_Executed()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            await Shell.Current.GoToAsync($"InsertarPersona");
         }
 
         #endregion
