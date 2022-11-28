@@ -14,9 +14,8 @@ public partial class ListadoPersona : ContentPage
 
     protected override void OnAppearing()
     {
+        ((clsListadoPersonasVM)(this.BindingContext)).actualizarLista();
         base.OnAppearing();
-
-        ObservableCollection<clsPersonas> listadoCompletoPersonas = new ObservableCollection<clsPersonas>(clsListadoPersonaBL.ListadoCompletoPersonas());
-        ((clsListadoPersonasVM)(this.BindingContext)).ListadoCompletoPersonas = listadoCompletoPersonas;
+        
     }
 }

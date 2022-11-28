@@ -187,6 +187,12 @@ namespace CRUD_Personas_MAUI.ViewModels
             await Shell.Current.GoToAsync($"InsertarPersona");
         }
 
+        public void actualizarLista()
+        {
+            listadoCompletoPersonas = new ObservableCollection<clsPersonas>(clsListadoPersonaBL.ListadoCompletoPersonas());
+            NotifyPropertyChanged("ListadoCompletoPersonas");
+        }
+
         protected virtual void NotifyPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
