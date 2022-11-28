@@ -8,6 +8,20 @@
         <model:clsListadoPersonasVM/>
     </ContentPage.BindingContext>
     <VerticalStackLayout>
+
+        <Border Margin="30, 0, 30, 0" Padding="15" BackgroundColor="#88888888" HeightRequest="80"  StrokeShape="RoundRectangle 30">
+            <Border StrokeShape="RoundRectangle 40">
+                <HorizontalStackLayout HorizontalOptions="End">
+
+                    <Entry Margin="0,4,0,0" WidthRequest="200" Text="{Binding BusquedaPersona}"/>
+                    <Border  StrokeShape="RoundRectangle 40">
+                        <Button Margin="0,0,0,0" WidthRequest="80" Text="Buscar" Command="{Binding BuscarPersona}"/>
+                    </Border>
+                </HorizontalStackLayout>
+            </Border>
+        </Border>
+
+
         <Border Margin="30, 60, 30, 0" Padding="15" BackgroundColor="#88888888" HeightRequest="400"  StrokeShape="RoundRectangle 40">
             <ListView x:Name="lsvListadoPersonas"
                   ItemsSource="{Binding ListadoCompletoPersonas}"
@@ -24,18 +38,18 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        
-            <HorizontalStackLayout HorizontalOptions="Center">
-            <Border Margin="0, 30, 30, 0" StrokeShape="RoundRectangle 40">
-                <Button WidthRequest="150" HeightRequest="60"  Text="EditarPersona" Command="{Binding EditarPersona}"/>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Border Margin="0, 30, 20, 0" StrokeShape="RoundRectangle 40">
+                <Button WidthRequest="95" HeightRequest="60"  Text="Editar" Command="{Binding EditarPersona}"/>
             </Border>
-            <Border Margin="0, 30, 30, 0" StrokeShape="RoundRectangle 40">
-                <Button WidthRequest="150" HeightRequest="60" Text="InsertarPersona" Command="{Binding InsertarPersona}"/>
+            <Border Margin="0, 30, 20, 0" StrokeShape="RoundRectangle 40">
+                <Button WidthRequest="95" HeightRequest="60" Text="Insertar" Command="{Binding InsertarPersona}"/>
             </Border>
-            <Border Margin="0, 30, 30, 0" StrokeShape="RoundRectangle 40">
-                <Button WidthRequest="150" HeightRequest="60" Text="BorrarPersona" Command="{Binding BorrarPersona}"/>
+            <Border Margin="0, 30, 0, 0" StrokeShape="RoundRectangle 40">
+                <Button WidthRequest="95" HeightRequest="60" Text="Borrar" Command="{Binding BorrarPersona}"/>
             </Border>
         </HorizontalStackLayout>
-   
+
     </VerticalStackLayout>
 </ContentPage>

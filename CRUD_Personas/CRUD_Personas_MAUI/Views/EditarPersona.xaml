@@ -7,7 +7,7 @@
     <ContentPage.BindingContext>
         <model:EditarPersonaVM/>
     </ContentPage.BindingContext>
-    <VerticalStackLayout HorizontalOptions="Center">
+    <VerticalStackLayout Margin="90,0,0,0">
 
 
         <HorizontalStackLayout Margin="0,0,0,10">
