@@ -15,6 +15,8 @@ namespace CRUD_Personas_MAUI.ViewModels
 
         private clsPersonas personaSeleccionada;
         private List<clsDepartamentos> listadoDepartamentos;
+        private clsDepartamentos departamentoSeleccionado;
+        private clsDepartamentos departamentoMostrar;
         private DelegateCommand guardarCommand;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -36,7 +38,23 @@ namespace CRUD_Personas_MAUI.ViewModels
             get { return listadoDepartamentos; }
             set { listadoDepartamentos = value; }
         }
-
+        public clsDepartamentos DepartamentoSeleccionado
+        {
+            get { return departamentoSeleccionado; }
+            set 
+            { 
+                departamentoSeleccionado = value;
+                
+            }
+        }
+        public clsDepartamentos DepartamentoMostrar
+        {
+            get { return departamentoMostrar; }
+            set
+            {
+                departamentoMostrar = value;
+            }
+        }
         public DelegateCommand GuardarCommand
         {
             get { return guardarCommand; }
@@ -48,7 +66,7 @@ namespace CRUD_Personas_MAUI.ViewModels
         #region Constructor
         public EditarPersonaVM()
         {
-
+            departamentoMostrar = new clsDepartamentos();
             listadoDepartamentos = clsListadoDepartamentoDAL.ListadoCompletoDepartamentos();
             guardarCommand = new DelegateCommand(guardarPersonaCommand_Executed, guardarPersonaCommand_CanExecute);
         }
@@ -60,6 +78,8 @@ namespace CRUD_Personas_MAUI.ViewModels
         {
             personaSeleccionada = query["personaSeleccionada"] as clsPersonas;
             NotifyPropertyChanged("PersonaSeleccionada");
+
+            igualarDeptList();
         }
 
         private bool guardarPersonaCommand_CanExecute()
@@ -70,11 +90,26 @@ namespace CRUD_Personas_MAUI.ViewModels
 
         private void guardarPersonaCommand_Executed()
         {
+            personaSeleccionada.IdDepartamento = departamentoSeleccionado.Id;
             clsManejadoraPersonaBL.editarPersonas(PersonaSeleccionada);
             
         }
+        /// <summary>
+        /// Metodo que cuando el departamento es igual a un departamento de una lista
+        /// le asigna al departamentoMostrar la posicion de la lista.
+        /// </summary>
+        private void igualarDeptList()
+        {
+            for (int i=0;  i< listadoDepartamentos.Count; i++)
+            {
+                if (listadoDepartamentos[i].Id == personaSeleccionada.IdDepartamento+1)
+                {
+                    departamentoMostrar.Id = i;
+                }
+            }
+            NotifyPropertyChanged("DepartamentoMostrar");
+        }
 
-      
         protected virtual void NotifyPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

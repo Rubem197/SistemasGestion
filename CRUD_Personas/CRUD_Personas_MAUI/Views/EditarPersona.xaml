@@ -58,7 +58,8 @@
             <Border Padding="3" Margin="0,0,0,0" StrokeShape="RoundRectangle 15">
                 <Picker  ItemsSource="{Binding ListadoDepartamentos}"
                 ItemDisplayBinding="{Binding Nombre}"
-                SelectedIndex="{Binding PersonaSeleccionada.IdDepartamento}"
+                SelectedItem="{Binding DepartamentoSeleccionado}"
+                SelectedIndex="{Binding DepartamentoMostrar.Id}"
                 />
             </Border>
         </HorizontalStackLayout>

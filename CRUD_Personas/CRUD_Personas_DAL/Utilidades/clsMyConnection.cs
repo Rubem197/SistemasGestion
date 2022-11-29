@@ -35,8 +35,8 @@ namespace CRUD_Personas_DAL.Utilidades
         public clsMyConnection()
         {
 
-            this.server = "rlindes.database.windows.net";
-            this.dataBase = "RubenDB";
+            this.server = "davidp.database.windows.net";
+            this.dataBase = "davidPDB";
             this.user = "fernando";
             this.pass = "Mandaloriano69";
 

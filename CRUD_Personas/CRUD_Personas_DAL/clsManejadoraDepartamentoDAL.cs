@@ -11,7 +11,12 @@ namespace CRUD_Personas_DAL
 {
     public class clsManejadoraDepartamentoDAL
     {
-
+        /// <summary>
+        /// Metodo que recibe una id y borra un departamento por la id
+        /// postcondicion: Returna un entero con las filas afectadas
+        /// </summary>
+        /// <param name="persona"></param>
+        /// <returns></returns>
         public static int borrarDepartamentos(int id)
         {
             int filasAfectadas = 0;
@@ -33,7 +38,12 @@ namespace CRUD_Personas_DAL
 
             return filasAfectadas;
         }
-
+        /// <summary>
+        /// Metodo que edita un departamento en la base de datos
+        /// postcondicion: Returna un entero con las filas afectadas
+        /// </summary>
+        /// <param name="persona"></param>
+        /// <returns></returns>
         public static int editarDepartamentos(clsDepartamentos departamento)
         {
             int filasAfectadas = 0;
@@ -57,7 +67,12 @@ namespace CRUD_Personas_DAL
 
             return filasAfectadas;
         }
-
+        /// <summary>
+        /// Metodo que inserta un departamento en la base de datos
+        /// postcondicion: Returna un entero con las filas afectadas
+        /// </summary>
+        /// <param name="persona"></param>
+        /// <returns></returns>
         public static int insertarDepartamentos(clsDepartamentos departamento)
         {
             int filasAfectadas = 0;

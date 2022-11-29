@@ -6,6 +6,12 @@ namespace CRUD_Personas_DAL
 {
     public class clsListadoPersonaDAL
     {
+        /// <summary>
+        /// Metodo que recoge todos los datos de personas de la base de datos
+        /// y lo inserta en una lista de personas
+        /// postcondicion: Devolvera una lista de personas.
+        /// </summary>
+        /// <returns></returns>
         public static List<clsPersonas> ListadoCompletoPersonas()
         {
             List<clsPersonas> lista = new List<clsPersonas>();
@@ -34,7 +40,14 @@ namespace CRUD_Personas_DAL
                         persona.Direccion = (string)lector["Direccion"];
                         persona.Foto = (string)lector["Foto"];
                         persona.FechaNacimiento = (DateTime)lector["FechaNacimiento"];
-                        persona.IdDepartamento = (int)lector["IDDepartamento"]-1;
+                        if (lector["IDDepartamento"] != System.DBNull.Value)
+                        {
+                            persona.IdDepartamento = (int)lector["IDDepartamento"] - 1;
+                        }
+                        else
+                        {
+                            persona.IdDepartamento = -1;
+                        }
                         lista.Add(persona);
                     }
                 }

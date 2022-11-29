@@ -43,7 +43,7 @@ namespace CRUD_Personas_MAUI.ViewModels
                 editarCommand.RaiseCanExecuteChanged();
             }
         }
-
+      
         public string BusquedaPersona
         {
             get { return busquedaPersona; }
@@ -114,7 +114,10 @@ namespace CRUD_Personas_MAUI.ViewModels
             }
             return lanzarExecuted;
         }
-
+        /// <summary>
+        /// Metodo que compara el contenido de los nombres y apellidos
+        /// de la lista de personas y si es igual a lo buscado.
+        /// </summary>
         private void buscarPersonaCommand_Executed()
         {
 
@@ -140,7 +143,10 @@ namespace CRUD_Personas_MAUI.ViewModels
 
             return lanzarExecuted;
         }
-
+        /// <summary>
+        /// Metodo que borra la persona seleccionada del listado 
+        /// y que llama a la base de datos para borrarla de alli.
+        /// </summary>
         private void borrarPersonaCommand_Executed()
         {
 
@@ -166,7 +172,10 @@ namespace CRUD_Personas_MAUI.ViewModels
 
             return lanzarExecuted;
         }
-
+        /// <summary>
+        /// Metodo que guarda en un diccionario la persona seleccionada 
+        /// y te envia a la vista EditarPersona con la personaSeleccionada
+        /// </summary>
         private async void editarPersonaCommand_Executed()
         {
 

@@ -11,7 +11,12 @@ namespace CRUD_Personas_DAL
 {
     public class clsManejadoraPersonaDAL
     {
-
+        /// <summary>
+        /// Metodo que recibe una id y la borra en la base de datos
+        /// Postcondicion: Returna un entero con las filas afectadas
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static int borrarPersonas(int id){
             int filasAfectadas = 0;
 
@@ -32,7 +37,12 @@ namespace CRUD_Personas_DAL
 
                 return filasAfectadas;
         }
-
+        /// <summary>
+        /// Metodo que recibe una persona y la actualiza en la base de datos
+        /// postcondicion: Returna un entero con las filas afectadas
+        /// </summary>
+        /// <param name="persona"></param>
+        /// <returns></returns>
         public static int editarPersonas(clsPersonas persona)
         {
             int filasAfectadas = 0;
@@ -48,7 +58,7 @@ namespace CRUD_Personas_DAL
                 comando.Parameters.Add("@telefono", System.Data.SqlDbType.VarChar).Value = persona.Telefono;
                 comando.Parameters.Add("@direccion", System.Data.SqlDbType.VarChar).Value = persona.Direccion;
                 comando.Parameters.Add("@fechaNacimiento", System.Data.SqlDbType.Date).Value = persona.FechaNacimiento;
-                comando.Parameters.Add("@idDepartamento", System.Data.SqlDbType.Int).Value = persona.IdDepartamento+1;
+                comando.Parameters.Add("@idDepartamento", System.Data.SqlDbType.Int).Value = persona.IdDepartamento;
                 comando.Connection = miCon.getConnection();
                 comando.CommandText = "UPDATE Personas SET Nombre=@nombre, Apellidos=@apellidos, " +
                         "Telefono=@telefono, Direccion=@direccion, FechaNacimiento=@fechaNacimiento, " +
@@ -63,7 +73,12 @@ namespace CRUD_Personas_DAL
 
             return filasAfectadas;
         }
-
+        /// <summary>
+        /// Metodo que inserta una persona en la base de datos
+        /// postcondicion: Returna un entero con las filas afectadas
+        /// </summary>
+        /// <param name="persona"></param>
+        /// <returns></returns>
         public static int insertarPersonas(clsPersonas persona)
         {
             int filasAfectadas = 0;

@@ -6,6 +6,12 @@ namespace CRUD_Personas_DAL
 {
     public class clsListadoDepartamentoDAL
     {
+        /// <summary>
+        /// Metodo que recoge todos los datos de departamentos de la base de datos
+        /// y lo inserta en una lista de departamentos
+        /// postcondicion: Devolvera una lista de departamentos.
+        /// </summary>
+        /// <returns></returns>
         public static List<clsDepartamentos> ListadoCompletoDepartamentos()
         {
             List<clsDepartamentos> lista = new List<clsDepartamentos>();

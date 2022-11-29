@@ -11,7 +11,10 @@ public partial class ListadoPersona : ContentPage
 	{
 		InitializeComponent();
 	}
-
+    /// <summary>
+    /// Metodo que cuando la pantalla sea visible llama al metodo
+    /// actualizar lista
+    /// </summary>
     protected override void OnAppearing()
     {
         ((clsListadoPersonasVM)(this.BindingContext)).actualizarLista();
