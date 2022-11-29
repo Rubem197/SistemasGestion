@@ -1,5 +1,4 @@
 ﻿using CRUD_Personas_BL;
-using CRUD_Personas_DAL;
 using CRUD_Personas_Entidades;
 using System;
 using System.Collections.Generic;
@@ -11,34 +10,26 @@ using UD11_Ejercicio1_Maui.ViewModels.Utilidades;
 
 namespace CRUD_Personas_MAUI.ViewModels
 {
-    public class InsertarPersonaVM : INotifyPropertyChanged
+    public class InsertarDeptVM : INotifyPropertyChanged
     {
-          
         #region Atributos
 
-        private clsPersonas personaSeleccionada;
-        private List<clsDepartamentos> listadoDepartamentos;
+        private clsDepartamentos deptSeleccionado;
         private DelegateCommand guardarCommand;
         public event PropertyChangedEventHandler PropertyChanged;
-
 
         #endregion
 
         #region Propiedades
-        public clsPersonas PersonaSeleccionada
+        public clsDepartamentos DeptSeleccionado
         {
-            get { return personaSeleccionada; }
+            get { return deptSeleccionado; }
             set
             {
-                personaSeleccionada = value;
+                deptSeleccionado = value;
                 guardarCommand.RaiseCanExecuteChanged();
 
             }
-        }
-        public List<clsDepartamentos> ListadoDepartamentos
-        {
-            get { return listadoDepartamentos; }
-            set { listadoDepartamentos = value; }
         }
 
         public DelegateCommand GuardarCommand
@@ -50,25 +41,25 @@ namespace CRUD_Personas_MAUI.ViewModels
         #endregion
 
         #region Constructor
-        public InsertarPersonaVM()
+        public InsertarDeptVM()
         {
-            personaSeleccionada = new clsPersonas();
-            listadoDepartamentos = clsListadoDepartamentoDAL.ListadoCompletoDepartamentos();
-            guardarCommand = new DelegateCommand(guardarPersonaCommand_Executed, guardarPersonaCommand_CanExecute);
+            deptSeleccionado = new clsDepartamentos();
+            guardarCommand = new DelegateCommand(guardarDeptCommand_Executed, guardarDeptCommand_CanExecute);
         }
         #endregion
 
-        #region Comandos
 
-        private bool guardarPersonaCommand_CanExecute()
+        #region Comandos
+       
+
+        private bool guardarDeptCommand_CanExecute()
         {
-            bool lanzarExecuted = true;
-            return lanzarExecuted;
+            return true;
         }
 
-        private void guardarPersonaCommand_Executed()
+        private void guardarDeptCommand_Executed()
         {
-            clsManejadoraPersonaBL.insertarPersonas(PersonaSeleccionada);
+            clsManejadoraDepartamentoBL.insertarDepartamento(DeptSeleccionado);
 
         }
 

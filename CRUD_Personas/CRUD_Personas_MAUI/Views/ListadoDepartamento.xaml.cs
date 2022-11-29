@@ -1,3 +1,5 @@
+using CRUD_Personas_MAUI.ViewModels;
+
 namespace CRUD_Personas_MAUI.Views;
 
 public partial class ListadoDepartamento : ContentPage
@@ -6,4 +8,11 @@ public partial class ListadoDepartamento : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    protected override void OnAppearing()
+    {
+        ((clsListadoDepartamentosVM)(this.BindingContext)).actualizarLista();
+        base.OnAppearing();
+
+    }
 }

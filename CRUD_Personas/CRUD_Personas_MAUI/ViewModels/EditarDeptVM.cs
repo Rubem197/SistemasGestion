@@ -11,34 +11,27 @@ using UD11_Ejercicio1_Maui.ViewModels.Utilidades;
 
 namespace CRUD_Personas_MAUI.ViewModels
 {
-    public class InsertarPersonaVM : INotifyPropertyChanged
+    [QueryProperty(nameof(clsDepartamentos), "deptSeleccionado")]
+    public class EditarDeptVM : IQueryAttributable, INotifyPropertyChanged
     {
-          
         #region Atributos
 
-        private clsPersonas personaSeleccionada;
-        private List<clsDepartamentos> listadoDepartamentos;
+        private clsDepartamentos deptSeleccionado;
         private DelegateCommand guardarCommand;
         public event PropertyChangedEventHandler PropertyChanged;
-
 
         #endregion
 
         #region Propiedades
-        public clsPersonas PersonaSeleccionada
+        public clsDepartamentos DeptSeleccionado
         {
-            get { return personaSeleccionada; }
+            get { return deptSeleccionado; }
             set
             {
-                personaSeleccionada = value;
+                deptSeleccionado = value;
                 guardarCommand.RaiseCanExecuteChanged();
 
             }
-        }
-        public List<clsDepartamentos> ListadoDepartamentos
-        {
-            get { return listadoDepartamentos; }
-            set { listadoDepartamentos = value; }
         }
 
         public DelegateCommand GuardarCommand
@@ -50,25 +43,28 @@ namespace CRUD_Personas_MAUI.ViewModels
         #endregion
 
         #region Constructor
-        public InsertarPersonaVM()
+        public EditarDeptVM()
         {
-            personaSeleccionada = new clsPersonas();
-            listadoDepartamentos = clsListadoDepartamentoDAL.ListadoCompletoDepartamentos();
-            guardarCommand = new DelegateCommand(guardarPersonaCommand_Executed, guardarPersonaCommand_CanExecute);
+            guardarCommand = new DelegateCommand(guardarDeptCommand_Executed, guardarDeptCommand_CanExecute);
         }
         #endregion
 
-        #region Comandos
 
-        private bool guardarPersonaCommand_CanExecute()
+        #region Comandos
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            bool lanzarExecuted = true;
-            return lanzarExecuted;
+            deptSeleccionado = query["deptSeleccionado"] as clsDepartamentos;
+            NotifyPropertyChanged("DeptSeleccionado");
         }
 
-        private void guardarPersonaCommand_Executed()
+        private bool guardarDeptCommand_CanExecute()
         {
-            clsManejadoraPersonaBL.insertarPersonas(PersonaSeleccionada);
+            return true;
+        }
+
+        private void guardarDeptCommand_Executed()
+        {
+            clsManejadoraDepartamentoBL.editarDepartamento(DeptSeleccionado);
 
         }
 

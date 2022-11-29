@@ -92,7 +92,6 @@ namespace CRUD_Personas_MAUI.ViewModels
 
         public clsListadoPersonasVM()
         {
-            listadoCompletoPersonas = new ObservableCollection<clsPersonas>(clsListadoPersonaBL.ListadoCompletoPersonas());
             backupListadoCompletoPersonas = new ObservableCollection<clsPersonas>(clsListadoPersonaBL.ListadoCompletoPersonas());
             BuscarPersona = new DelegateCommand(buscarPersonaCommand_Executed, buscarPersonaCommand_CanExecute);
             BorrarPersona = new DelegateCommand(borrarPersonaCommand_Executed, borrarPersonaCommand_CanExecute);

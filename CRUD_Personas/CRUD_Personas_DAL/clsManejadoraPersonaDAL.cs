@@ -39,7 +39,6 @@ namespace CRUD_Personas_DAL
 
             clsMyConnection miCon = new clsMyConnection();
             SqlCommand comando = new SqlCommand();
-            clsPersonas personaCon = new clsPersonas();
 
             try
             {
@@ -71,7 +70,6 @@ namespace CRUD_Personas_DAL
 
             clsMyConnection miCon = new clsMyConnection();
             SqlCommand comando = new SqlCommand();
-            clsPersonas personaCon = new clsPersonas();
 
             try
             {

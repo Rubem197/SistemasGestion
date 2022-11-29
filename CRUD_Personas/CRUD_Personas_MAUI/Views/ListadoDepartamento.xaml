@@ -2,11 +2,53 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_Personas_MAUI.Views.ListadoDepartamento"
+             xmlns:model="clr-namespace:CRUD_Personas_MAUI.ViewModels"
              Title="ListadoDepartamento">
+    <ContentPage.BindingContext>
+        <model:clsListadoDepartamentosVM/>
+    </ContentPage.BindingContext>
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+
+        <Border Margin="30, 0, 30, 0" Padding="15" BackgroundColor="#88888888" HeightRequest="80"  StrokeShape="RoundRectangle 30">
+            <Border StrokeShape="RoundRectangle 40">
+                <HorizontalStackLayout HorizontalOptions="End">
+
+                    <Entry Margin="0,4,0,0" WidthRequest="200" Text="{Binding BusquedaDept}"/>
+                    <Border  StrokeShape="RoundRectangle 40">
+                        <Button Margin="0,0,0,0" WidthRequest="80" Text="Buscar" Command="{Binding BuscarDept}"/>
+                    </Border>
+                </HorizontalStackLayout>
+            </Border>
+        </Border>
+
+
+        <Border Margin="30, 60, 30, 0" Padding="15" BackgroundColor="#88888888" HeightRequest="400"  StrokeShape="RoundRectangle 40">
+            <ListView x:Name="lsvListadoPersonas"
+                  ItemsSource="{Binding ListadoCompletoDept}"
+                  SelectedItem="{Binding DeptSeleccionado}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <HorizontalStackLayout HeightRequest="40">
+                                <Label Margin="0,10,5,0" Text="{Binding Nombre}"/>
+                            </HorizontalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Border Margin="0, 30, 20, 0" StrokeShape="RoundRectangle 40">
+                <Button WidthRequest="95" HeightRequest="60"  Text="Editar" Command="{Binding EditarCommand}"/>
+            </Border>
+            <Border Margin="0, 30, 20, 0" StrokeShape="RoundRectangle 40">
+                <Button WidthRequest="95" HeightRequest="60" Text="Insertar" Command="{Binding InsertarCommand}"/>
+            </Border>
+            <Border Margin="0, 30, 0, 0" StrokeShape="RoundRectangle 40">
+                <Button WidthRequest="95" HeightRequest="60" Text="Borrar" Command="{Binding BorrarCommand}"/>
+            </Border>
+        </HorizontalStackLayout>
+
     </VerticalStackLayout>
 </ContentPage>
