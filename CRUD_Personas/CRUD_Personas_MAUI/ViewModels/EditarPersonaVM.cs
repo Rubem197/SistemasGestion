@@ -8,8 +8,8 @@ using UD11_Ejercicio1_Maui.ViewModels.Utilidades;
 
 namespace CRUD_Personas_MAUI.ViewModels
 {
-    [QueryProperty(nameof(clsPersonas), "personaSeleccionada")]
-    public class EditarPersonaVM : IQueryAttributable, INotifyPropertyChanged
+    [QueryProperty(nameof(PersonaSeleccionada), "personaSeleccionada")]
+    public class EditarPersonaVM : INotifyPropertyChanged
     {
         #region Atributos
 
@@ -29,8 +29,9 @@ namespace CRUD_Personas_MAUI.ViewModels
             set
             {
                 personaSeleccionada = value;
+                NotifyPropertyChanged();
                 guardarCommand.RaiseCanExecuteChanged();
-                
+                igualarDeptList();
             }
         }
         public List<clsDepartamentos> ListadoDepartamentos
@@ -74,13 +75,6 @@ namespace CRUD_Personas_MAUI.ViewModels
 
 
         #region Comandos
-        public void ApplyQueryAttributes(IDictionary<string, object> query)
-        {
-            personaSeleccionada = query["personaSeleccionada"] as clsPersonas;
-            NotifyPropertyChanged("PersonaSeleccionada");
-
-            igualarDeptList();
-        }
 
         private bool guardarPersonaCommand_CanExecute()
         {
