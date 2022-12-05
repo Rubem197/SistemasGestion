@@ -1,6 +1,9 @@
-﻿using CRUD_Personas_BL;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CRUD_Personas_BL;
 using CRUD_Personas_DAL;
 using CRUD_Personas_Entidades;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -60,8 +63,15 @@ namespace CRUD_Personas_MAUI.ViewModels
 
         private void guardarDeptCommand_Executed()
         {
-            clsManejadoraDepartamentoBL.editarDepartamento(DeptSeleccionado);
-
+            try
+            {
+                clsManejadoraDepartamentoBL.editarDepartamento(DeptSeleccionado);
+                var toast = Toast.Make("Datos insertardos correctamente", ToastDuration.Long).Show();
+            }
+            catch (SqlException)
+            {
+                var toast = Toast.Make("La base de datos no esta disponible", ToastDuration.Long).Show();
+            }
         }
 
         protected virtual void NotifyPropertyChanged(string propertyName = null)

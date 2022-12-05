@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="juegoBabyJoda_Maui.Views.MainPage"
+             xmlns:model ="clr-namespace:juegoBabyJoda_Maui.ViewModels"
+             Title="MainPage">
+    <ContentPage.BindingContext>
+        <model:clsTableroVM/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <CollectionView ItemsLayout="VerticalGrid, 3" SelectionMode="Single"
+                        ItemsSource="{Binding Tablero}" SelectionChangedCommand="{Binding PulsarCarta}" SelectedItem="{Binding CartaSeleccionada}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Imagen}" WidthRequest="300"
+                            HeightRequest="200"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+
+</ContentPage>

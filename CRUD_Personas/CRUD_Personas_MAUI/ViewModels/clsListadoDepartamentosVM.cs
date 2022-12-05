@@ -1,5 +1,8 @@
-﻿using CRUD_Personas_BL;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CRUD_Personas_BL;
 using CRUD_Personas_Entidades;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,8 +38,8 @@ namespace CRUD_Personas_MAUI.ViewModels
         public clsDepartamentos DeptSeleccionado
         {
             get { return deptSeleccionado; }
-            set 
-            { 
+            set
+            {
                 deptSeleccionado = value;
                 editarCommand.RaiseCanExecuteChanged();
                 borrarCommand.RaiseCanExecuteChanged();
@@ -73,7 +76,7 @@ namespace CRUD_Personas_MAUI.ViewModels
         public DelegateCommand EditarCommand
         {
             get { return editarCommand; }
-            set{ editarCommand = value; }
+            set { editarCommand = value; }
         }
         public DelegateCommand InsertarCommand
         {
@@ -88,8 +91,14 @@ namespace CRUD_Personas_MAUI.ViewModels
         #region Constructor
         public clsListadoDepartamentosVM()
         {
-            listadoCompletoDept = new ObservableCollection<clsDepartamentos>(clsListadoDepartamentoBL.ListadoCompletoDepartamentos());
-            backupListadoCompletoDept = new ObservableCollection<clsDepartamentos>(clsListadoDepartamentoBL.ListadoCompletoDepartamentos());
+            try
+            {
+                backupListadoCompletoDept = new ObservableCollection<clsDepartamentos>(clsListadoDepartamentoBL.ListadoCompletoDepartamentos());
+            }
+            catch (SqlException)
+            {
+                var toast = Toast.Make("La base de datos no esta disponible", ToastDuration.Long).Show();
+            }
             BuscarDept = new DelegateCommand(buscarDeptCommand_Executed, buscarDeptCommand_CanExecute);
             BorrarCommand = new DelegateCommand(borrarDeptCommand_Executed, borrarDeptCommand_CanExecute);
             editarCommand = new DelegateCommand(editarDeptCommand_Executed, editarDeptCommand_CanExecute);
@@ -179,7 +188,14 @@ namespace CRUD_Personas_MAUI.ViewModels
         }
         public void actualizarLista()
         {
-            listadoCompletoDept = new ObservableCollection<clsDepartamentos>(clsListadoDepartamentoBL.ListadoCompletoDepartamentos());
+            try
+            {
+                listadoCompletoDept = new ObservableCollection<clsDepartamentos>(clsListadoDepartamentoBL.ListadoCompletoDepartamentos());
+            }
+            catch (SqlException)
+            {
+                var toast = Toast.Make("La base de datos no esta disponible", ToastDuration.Long).Show();
+            }
             NotifyPropertyChanged("ListadoCompletoDept");
         }
 

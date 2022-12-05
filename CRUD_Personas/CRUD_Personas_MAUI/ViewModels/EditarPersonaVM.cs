@@ -1,7 +1,10 @@
-﻿using CRUD_Personas_BL;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CRUD_Personas_BL;
 using CRUD_Personas_DAL;
 using CRUD_Personas_Entidades;
 using CRUD_Personas_MAUI.Views;
+using Microsoft.Data.SqlClient;
 using System.ComponentModel;
 using System.Web;
 using UD11_Ejercicio1_Maui.ViewModels.Utilidades;
@@ -68,8 +71,14 @@ namespace CRUD_Personas_MAUI.ViewModels
         public EditarPersonaVM()
         {
             departamentoMostrar = new clsDepartamentos();
-            listadoDepartamentos = clsListadoDepartamentoDAL.ListadoCompletoDepartamentos();
-            guardarCommand = new DelegateCommand(guardarPersonaCommand_Executed, guardarPersonaCommand_CanExecute);
+            try
+            {
+                listadoDepartamentos = clsListadoDepartamentoDAL.ListadoCompletoDepartamentos();
+            }catch(SqlException )
+            {
+                var toast = Toast.Make("La base de datos no esta disponible", ToastDuration.Long).Show();
+            }
+                guardarCommand = new DelegateCommand(guardarPersonaCommand_Executed, guardarPersonaCommand_CanExecute);
         }
         #endregion
 
@@ -85,8 +94,15 @@ namespace CRUD_Personas_MAUI.ViewModels
         private void guardarPersonaCommand_Executed()
         {
             personaSeleccionada.IdDepartamento = departamentoSeleccionado.Id;
-            clsManejadoraPersonaBL.editarPersonas(PersonaSeleccionada);
-            
+            try
+            {
+                clsManejadoraPersonaBL.editarPersonas(PersonaSeleccionada);
+                var toast = Toast.Make("Datos insertardos correctamente", ToastDuration.Long).Show();
+            }
+            catch (SqlException)
+            {
+                var toast = Toast.Make("La base de datos no esta disponible", ToastDuration.Long).Show();
+            }
         }
         /// <summary>
         /// Metodo que cuando el departamento es igual a un departamento de una lista

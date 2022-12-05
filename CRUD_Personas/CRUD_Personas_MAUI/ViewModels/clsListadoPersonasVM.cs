@@ -1,7 +1,8 @@
-﻿using CRUD_Personas_BL;
-using CRUD_Personas_DAL;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CRUD_Personas_BL;
 using CRUD_Personas_Entidades;
-using CRUD_Personas_MAUI.Views;
+using Microsoft.Data.SqlClient;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using UD11_Ejercicio1_Maui.ViewModels.Utilidades;
@@ -43,7 +44,7 @@ namespace CRUD_Personas_MAUI.ViewModels
                 editarCommand.RaiseCanExecuteChanged();
             }
         }
-      
+
         public string BusquedaPersona
         {
             get { return busquedaPersona; }
@@ -92,7 +93,14 @@ namespace CRUD_Personas_MAUI.ViewModels
 
         public clsListadoPersonasVM()
         {
-            backupListadoCompletoPersonas = new ObservableCollection<clsPersonas>(clsListadoPersonaBL.ListadoCompletoPersonas());
+            try
+            {
+                backupListadoCompletoPersonas = new ObservableCollection<clsPersonas>(clsListadoPersonaBL.ListadoCompletoPersonas());
+            }
+            catch (SqlException)
+            {
+                var toast = Toast.Make("La base de datos no esta disponible", ToastDuration.Long).Show();
+            }
             BuscarPersona = new DelegateCommand(buscarPersonaCommand_Executed, buscarPersonaCommand_CanExecute);
             BorrarPersona = new DelegateCommand(borrarPersonaCommand_Executed, borrarPersonaCommand_CanExecute);
             editarCommand = new DelegateCommand(editarPersonaCommand_Executed, editarPersonaCommand_CanExecute);
@@ -156,11 +164,17 @@ namespace CRUD_Personas_MAUI.ViewModels
                 {
                     listadoCompletoPersonas.RemoveAt(i);
                     backupListadoCompletoPersonas.RemoveAt(i);
-                    clsManejadoraPersonaBL.borrarPersonas(personaSeleccionada.Id);
+                    try
+                    {
+                        clsManejadoraPersonaBL.borrarPersonas(personaSeleccionada.Id);
+                    }
+                    catch (SqlException)
+                    {
+                        var toast = Toast.Make("La base de datos no esta disponible", ToastDuration.Long).Show();
+                    }
                 }
             }
         }
-
         private bool editarPersonaCommand_CanExecute()
         {
             bool lanzarExecuted = true;
@@ -197,7 +211,14 @@ namespace CRUD_Personas_MAUI.ViewModels
 
         public void actualizarLista()
         {
-            listadoCompletoPersonas = new ObservableCollection<clsPersonas>(clsListadoPersonaBL.ListadoCompletoPersonas());
+            try
+            {
+                listadoCompletoPersonas = new ObservableCollection<clsPersonas>(clsListadoPersonaBL.ListadoCompletoPersonas());
+            }
+            catch (SqlException)
+            {
+                var toast = Toast.Make("La base de datos no esta disponible", ToastDuration.Long).Show();
+            }
             NotifyPropertyChanged("ListadoCompletoPersonas");
         }
 
