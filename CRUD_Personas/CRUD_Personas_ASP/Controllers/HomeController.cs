@@ -13,7 +13,8 @@ namespace CRUD_Personas_ASP.Controllers
     {
         public ActionResult ListadoPersona()
         {
-            return View(clsListadoPersonasVM.ListadoCompletoPersonas);
+            clsListadoPersonasVM awa = new clsListadoPersonasVM(); 
+            return View((IEnumerable)(awa.ListadoCompletoPersonasMasDept));
         }
 
         public ActionResult ListadoDepartamento()

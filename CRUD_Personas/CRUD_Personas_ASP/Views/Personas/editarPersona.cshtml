@@ -1,0 +1,27 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model CRUD_Personas_Entidades.clsPersonas
+}
+
+<form method="POST">
+    <input type="text" name="nombre" value="@Model.Id" />
+    <br />
+    <input type="text" name="nombre" value="@Model.Nombre"/>
+    <br/>
+    <input type="text" name="nombre" value="@Model.Apellidos" />
+    <br />
+    <input type="text" name="nombre" value="@Model.Telefono" />
+    <br />
+    <input type="text" name="nombre" value="@Model.Direccion" />
+    <br />
+    <input type="text" name="nombre" value="@Model.FechaNacimiento" />
+    <br />
+    <input type="text" name="nombre" value="@Model.Foto" />
+    <br />
+    <input type="text" name="nombre" value="@Model.IdDepartamento" />
+    <br />
+    
+    <input type="submit" value="enviar" />
+</form>
