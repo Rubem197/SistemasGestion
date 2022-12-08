@@ -7,7 +7,7 @@
 <h1>ListadoPersona</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @Html.ActionLink("Insertar Persona", "insertarPersona", "Personas")
 </p>
 <table class="table">
     <thead>
@@ -71,7 +71,6 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "editarPersona", "Personas", new { id=item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
                     @Html.ActionLink("Delete", "eliminarPersona", "Personas", new { id=item.Id })
                 </td>
             </tr>

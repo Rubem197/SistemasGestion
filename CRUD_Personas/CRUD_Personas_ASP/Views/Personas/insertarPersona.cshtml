@@ -2,8 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    @model CRUD_Personas_ASP.Models.ViewModels.clsEditarPersonaVM
-
+    @model CRUD_Personas_ASP.Models.ViewModels.clsInsertarPersonaVM
 }
 
 <form method="POST">
@@ -21,12 +20,14 @@
     <br />
 
     <select name="IdDepartamento">
-        @for (int i=0; i< @Model.ListadoCompletoDepartamentos.Count(); i++)
+        @for (int i = 0; i < @Model.ListadoCompletoDepartamentos.Count(); i++)
         {
-            @if (Model.Persona.IdDepartamento+1 == Model.ListadoCompletoDepartamentos[i].Id)
+            @if (Model.Persona.IdDepartamento + 1 == Model.ListadoCompletoDepartamentos[i].Id)
             {
                 <option value=@Model.ListadoCompletoDepartamentos[i].Id selected="@i">@Model.ListadoCompletoDepartamentos[i].Nombre</option>
-            }else{
+            }
+            else
+            {
                 <option value=@Model.ListadoCompletoDepartamentos[i].Id>@Model.ListadoCompletoDepartamentos[i].Nombre</option>
             }
         }

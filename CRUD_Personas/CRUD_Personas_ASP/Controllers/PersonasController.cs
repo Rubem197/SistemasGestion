@@ -9,18 +9,13 @@ namespace CRUD_Personas_ASP.Controllers
     {
         public IActionResult editarPersona(int id)
         {
-            clsPersonas persona = clsEditarPersonaVM.obtenerPersonaPorId(id);
-            var vm = new clsEditarPersonaVM 
-            { 
-                Persona = clsEditarPersonaVM.obtenerPersonaPorId(id)
-            };
-            return View(persona);
+            clsEditarPersonaVM clsEditarPersonaVM = new clsEditarPersonaVM(id);
+            return View(clsEditarPersonaVM);
         }
 
         [HttpPost]
         public IActionResult editarPersona(clsPersonas persona)
         {
-            persona.IdDepartamento++;
             clsManejadoraPersonaBL.editarPersonas(persona);
             return RedirectToAction("ListadoPersona", "Home");
         }
@@ -28,6 +23,18 @@ namespace CRUD_Personas_ASP.Controllers
         public IActionResult eliminarPersona(int id)
         {
             clsManejadoraPersonaBL.borrarPersonas(id);
+            return RedirectToAction("ListadoPersona", "Home");
+        }
+        public IActionResult insertarPersona()
+        {
+            clsInsertarPersonaVM clsInsertarPersonaVM = new clsInsertarPersonaVM();
+            return View(clsInsertarPersonaVM);
+        }
+        [HttpPost]
+        public IActionResult insertarPersona(clsPersonas persona)
+        {
+            persona.IdDepartamento--;
+            clsManejadoraPersonaBL.insertarPersonas(persona);
             return RedirectToAction("ListadoPersona", "Home");
         }
     }

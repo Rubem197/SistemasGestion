@@ -1,5 +1,6 @@
 ﻿using CRUD_Personas_BL;
 using CRUD_Personas_Entidades;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CRUD_Personas_ASP.Models.ViewModels
 {
@@ -7,7 +8,6 @@ namespace CRUD_Personas_ASP.Models.ViewModels
     {
         private clsPersonas persona;
         private List<clsDepartamentos> listadoCompletoDepartamentos;
-        private clsDepartamentos departamentoMostrar;
 
         public clsPersonas Persona
         {
@@ -19,23 +19,23 @@ namespace CRUD_Personas_ASP.Models.ViewModels
             get { return listadoCompletoDepartamentos; }
             set { listadoCompletoDepartamentos = value; }
         }
-
-        public clsDepartamentos DepartamentoMostrar
+        public clsEditarPersonaVM(int id)
         {
-            get { return departamentoMostrar; }
-            set { departamentoMostrar = value; }
-        }
-
-        public clsEditarPersonaVM()
-        {
-            persona = new clsPersonas();
+            persona = obtenerPersonaPorId(id);
             listadoCompletoDepartamentos = clsListadoDepartamentoBL.ListadoCompletoDepartamentos();
-            departamentoMostrar = new clsDepartamentos();
         }
 
-        public static clsPersonas obtenerPersonaPorId(int id)
+        /// <summary>
+        /// Metodo que obtiene una persona por id, para ello obtiene un listado de personas completo
+        /// itera el listado y si encuentra una persona que tenga la id igual al que le pasamos por parametro
+        /// insertamos la persona de la lista en una persona y lo returnamos.
+        /// postcondicion: La base de datos tiene que estar disponible.
+        /// precondicion: puede returnar null en caso de que la base de datos no este disponible.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public clsPersonas obtenerPersonaPorId(int id)
         {
-            clsPersonas persona = new clsPersonaNombreDept();
             List<clsPersonas> lista = clsListadoPersonaBL.ListadoCompletoPersonas();
 
             for (int i = 0; i < lista.Count; i++)
@@ -45,21 +45,8 @@ namespace CRUD_Personas_ASP.Models.ViewModels
                     persona = lista[i];
                 }
             }
-
             return persona;
         }
 
-
-        private clsDepartamentos obtenerDepartamentoSeleccionado()
-        {
-            for (int i = 0; i < listadoCompletoDepartamentos.Count; i++)
-            {
-                if (listadoCompletoDepartamentos[i].Id == persona.IdDepartamento + 1)
-                {
-                    departamentoMostrar.Id = i;
-                }
-            }
-            return departamentoMostrar;
-        }
     }
 }
