@@ -18,13 +18,30 @@ namespace CRUD_Personas_ASP.Controllers
 
         public ActionResult ListadoPersona()
         {
-            clsListadoPersonasVM awa = new clsListadoPersonasVM(); 
-            return View((IEnumerable)(awa.ListadoCompletoPersonasMasDept));
+            try
+            {
+                clsListadoPersonasVM awa = new clsListadoPersonasVM();
+                return View((IEnumerable)(awa.ListadoCompletoPersonasMasDept));
+            }catch
+            {
+                return View("Error");
+            }
+        }
+        public ActionResult Error()
+        {
+            return View();
         }
 
         public ActionResult ListadoDepartamento()
-        { 
-            return View((IEnumerable)(clsListadoDepartamentoBL.ListadoCompletoDepartamentos()));
+        {
+            try
+            {
+                List<clsDepartamentos> listadoDepartamentos = clsListadoDepartamentoBL.ListadoCompletoDepartamentos();
+                return View((IEnumerable)(listadoDepartamentos));
+            }catch
+            {
+                return View("Error");
+            }
         }
     }
 }

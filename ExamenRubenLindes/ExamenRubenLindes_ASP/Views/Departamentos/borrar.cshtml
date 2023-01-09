@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model ExamenRubenLindes_ASP.Models.ViewModels.clsBorrarDepartamentosVM
+
+}
+<h1 class="display-4">Pagina de borrado</h1>
+<br />
+<h2>Vas a borrar el departamento: @Model.Departamento.Nombre</h2>
+<Br />
+<h2> Borrarias a @Model.PersonasABorrar personas estas seguro que quieres borrarlo?</h2>
+<br />
+<form method="post">
+
+    <button type="submit" asp-action="borrar">Borrar dept</button>
+
+</form>
+<br/>
+@ViewBag.personasBorradas

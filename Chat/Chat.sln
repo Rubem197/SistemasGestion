@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRChat", "SignalRChat\SignalRChat.csproj", "{0A57C21A-E50D-4DC6-9AC4-9D8BBF5FAA6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRChatMaui", "SignalRChatMaui\SignalRChatMaui.csproj", "{52330299-039A-49C9-B8CC-6D765F3594DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A57C21A-E50D-4DC6-9AC4-9D8BBF5FAA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A57C21A-E50D-4DC6-9AC4-9D8BBF5FAA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A57C21A-E50D-4DC6-9AC4-9D8BBF5FAA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A57C21A-E50D-4DC6-9AC4-9D8BBF5FAA6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52330299-039A-49C9-B8CC-6D765F3594DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52330299-039A-49C9-B8CC-6D765F3594DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52330299-039A-49C9-B8CC-6D765F3594DB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{52330299-039A-49C9-B8CC-6D765F3594DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52330299-039A-49C9-B8CC-6D765F3594DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52330299-039A-49C9-B8CC-6D765F3594DB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75862378-3A6A-48B7-9D34-45B9770327EC}
+	EndGlobalSection
+EndGlobal

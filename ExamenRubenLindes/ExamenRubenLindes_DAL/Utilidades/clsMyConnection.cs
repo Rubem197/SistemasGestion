@@ -20,7 +20,7 @@ using Microsoft.Data.SqlClient;
 //
 
 
-namespace CRUD_Personas_DAL.Utilidades
+namespace ExamenRubenLindes_DAL.Utilidades
 {
     public class clsMyConnection
     {
@@ -35,10 +35,10 @@ namespace CRUD_Personas_DAL.Utilidades
         public clsMyConnection()
         {
 
-             this.server = "davidp.database.windows.net";
-             this.dataBase = "davidPDB";
-             this.user = "fernando";
-             this.pass = "Mandaloriano69";
+             this.server = $"107-27\\SQLEXPRESS";
+             this.dataBase = "rlindesDB";
+             this.user = "prueba";
+             this.pass = "123";
 
         }
         //Con parámetros por si quisiera cambiar las conexiones

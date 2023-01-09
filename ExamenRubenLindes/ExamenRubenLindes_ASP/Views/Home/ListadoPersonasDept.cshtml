@@ -1,0 +1,28 @@
+﻿@model ExamenRubenLindes_ASP.Models.ViewModels.clsListadoPersonasDeptVM
+
+@{
+    ViewData["Title"] = "ListadoPersonasDept";
+}
+
+<h1>ListadoPersonasDept</h1>
+<br />
+<br />
+
+@foreach (var item in Model.ListadoCompletoDept)
+{
+    <h2>@Html.DisplayFor(modelItem => item.Nombre)</h2>
+    @Html.ActionLink("Delete", "borrar", "Departamentos", new {  id=item.Id })
+    <hr />
+    @foreach (var item2 in Model.ListadoCompletoPersonas)
+    {
+        if (item.Id == item2.IdDepartamento)
+        {
+            <ul>
+                @Html.DisplayFor(modelItem => item2.Nombre)
+                @Html.DisplayFor(modelItem => item2.Apellidos)
+                @Html.DisplayFor(modelItem => item2.Telefono)
+            </ul>
+        }
+    }
+}
+
