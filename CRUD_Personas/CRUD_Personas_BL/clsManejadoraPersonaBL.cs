@@ -10,6 +10,10 @@ namespace CRUD_Personas_BL
 {
     public class clsManejadoraPersonaBL
     {
+        public static clsPersonas obtenerPersonaPorId (int id)
+        {
+            return clsManejadoraPersonaDAL.obtenerPersonaPorId(id);
+        }
         public static int borrarPersonas(int id)
         {
             return clsManejadoraPersonaDAL.borrarPersonas(id);

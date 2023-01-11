@@ -1,23 +1,65 @@
 ﻿using CRUD_Personas_DAL.Utilidades;
 using CRUD_Personas_Entidades;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRUD_Personas_DAL
 {
     public class clsManejadoraPersonaDAL
     {
-        /// <summary>
-        /// Metodo que recibe una id y la borra en la base de datos
-        /// Postcondicion: Returna un entero con las filas afectadas
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public static int borrarPersonas(int id){
+
+        public static clsPersonas obtenerPersonaPorId(int id)
+        {
+            clsMyConnection miCon = new clsMyConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            clsPersonas persona = new clsPersonas();
+
+            comando.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
+
+            try
+            {
+                comando.Connection = miCon.getConnection();
+                comando.CommandText = "SELECT * FROM Personas where id = @id";
+                lector = comando.ExecuteReader();
+
+                if (lector.HasRows)
+                {
+                    while (lector.Read())
+                    {
+                        persona.Id = (int)lector["ID"];
+                        persona.Nombre = (string)lector["Nombre"];
+                        persona.Apellidos = (string)lector["Apellidos"];
+                        persona.Telefono = (string)lector["Telefono"];
+                        persona.Direccion = (string)lector["Direccion"];
+                        persona.Foto = (string)lector["Foto"];
+                        persona.FechaNacimiento = (DateTime)lector["FechaNacimiento"];
+                        if (lector["IDDepartamento"] != System.DBNull.Value)
+                        {
+                            persona.IdDepartamento = (int)lector["IDDepartamento"] - 1;
+                        }
+                        else
+                        {
+                            persona.IdDepartamento = -1;
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+
+            return persona;
+        }
+
+
+    /// <summary>
+    /// Metodo que recibe una id y la borra en la base de datos
+    /// Postcondicion: Returna un entero con las filas afectadas
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public static int borrarPersonas(int id){
             int filasAfectadas = 0;
 
             clsMyConnection miCon = new clsMyConnection();

@@ -9,9 +9,8 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Label
+            <ListView
                 x:Name="chatMessages"
-                FontSize="18"
                 HorizontalOptions="Center" />
 
             <Entry

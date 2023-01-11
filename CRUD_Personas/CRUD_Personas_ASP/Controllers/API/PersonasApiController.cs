@@ -20,28 +20,44 @@ namespace CRUD_Personas_ASP.Controllers.API
 
         // GET api/<PersonasApiController>/5
         [HttpGet("{id}")]
-        public clsEditarPersonaVM Get(int id)
+        public clsPersonas Get(int id)
         {
-            clsEditarPersonaVM clsEditarPersonaVM = new clsEditarPersonaVM(id);
-            return clsEditarPersonaVM;
+            return clsManejadoraPersonaBL.obtenerPersonaPorId(id);
         }
 
         // POST api/<PersonasApiController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public int Post([FromBody] clsPersonas persona)
         {
+            try
+            {
+                return clsManejadoraPersonaBL.insertarPersonas(persona);
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
         }
 
         // PUT api/<PersonasApiController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public int Put([FromBody] clsPersonas persona)
         {
+            try
+            {
+                return clsManejadoraPersonaBL.editarPersonas(persona);
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
         }
 
         // DELETE api/<PersonasApiController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public int Delete(int id)
         {
+            return clsManejadoraPersonaBL.borrarPersonas(id);
         }
     }
 }
